@@ -1,10 +1,45 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
+import { CounterComponent } from './Counter/counter.component';
+import { PostComponent } from './post/post.component';
+import { AddPostComponent } from './post/add-post/add-post.component';
+import { UpdatePostComponent } from './post/update-post/update-post.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'counter',
+    loadChildren: () =>
+      import('./Counter/counter.module').then((m) => m.CounterModule),
+  },
+  {
+    path: 'posts',
+    loadChildren: () =>
+      import('../app/post/post.module').then((d) => d.PostModule),
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '**',
+    component: ErrorComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
