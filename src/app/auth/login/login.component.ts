@@ -6,7 +6,7 @@ import userModel from 'src/app/models/userModel';
 import jwt_decode from 'jwt-decode';
 import { AppState } from 'src/app/appStore/app.store';
 import { Store } from '@ngrx/store';
-import { setUser } from 'src/app/ngrx/userStore/user.action';
+import { loginStart, setUser } from 'src/app/ngrx/userStore/user.action';
 import { Router } from '@angular/router';
 
 @Component({
@@ -43,5 +43,12 @@ export class LoginComponent {
         console.log('good');
         this.navigate.navigate(['/']);
       });
+  }
+
+  LoginUserWithEffect() {
+    this.store.dispatch(
+      loginStart({ userName: this.userName, password: this.password })
+    );
+    this.navigate.navigate(['/']);
   }
 }

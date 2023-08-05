@@ -7,6 +7,7 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { UpdatePostComponent } from './update-post/update-post.component';
 import { StoreModule } from '@ngrx/store';
 import { postReducer } from '../ngrx/postStore/post.reducer';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'add', component: AddPostComponent },
       { path: 'update/:id', component: UpdatePostComponent },
     ],
+    canActivateChild: [AuthGuard],
   },
 ];
 @NgModule({

@@ -16,6 +16,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './Services/Auth/auth.service';
 import { userReducer } from './ngrx/userStore/user.reducer';
+import { AuthEffects } from './ngrx/userStore/user.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { userReducer } from './ngrx/userStore/user.reducer';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    EffectsModule.forRoot([AuthEffects]),
     FormsModule,
+
     StoreModule.forRoot({ user: userReducer }),
     StoreDevtoolsModule.instrument({}),
     HttpClientModule,

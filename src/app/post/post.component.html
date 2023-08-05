@@ -13,7 +13,7 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tr *ngFor="let post of posts$ | async">
+      <tr *ngFor="let post of postsFromService$ | async">
         <td>{{ post.id }}</td>
         <td>{{ post.title }}</td>
         <td>{{ post.description }}</td>

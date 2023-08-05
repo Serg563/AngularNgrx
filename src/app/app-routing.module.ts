@@ -8,11 +8,13 @@ import { AddPostComponent } from './post/add-post/add-post.component';
 import { UpdatePostComponent } from './post/update-post/update-post.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'counter',
@@ -23,6 +25,8 @@ const routes: Routes = [
     path: 'posts',
     loadChildren: () =>
       import('../app/post/post.module').then((d) => d.PostModule),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   {
     path: 'register',
